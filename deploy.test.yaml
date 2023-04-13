@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deploy-test
+  name: deploy-test
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: deploy-test
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: deploy-test
+    spec:
+      containers:
+      - image: nginx:1.23
+        name: hello-app
+        resources: {}
+status: {}
