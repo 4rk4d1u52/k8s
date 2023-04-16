@@ -3,22 +3,25 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: demo
-  name: demo
+    app: argocd
+  name: argocd
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
-      app: demo
-   : {}
+      app: argocd
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: demo
+        app: argocd
     spec:
       containers:
-      - image: gcr.io/google-samples/hello-app:1.0
-        name: hello-app
+      - image: argoproj/rollouts-demo:green
+        name: rollouts-demo
         resources: {}
 status: {}
