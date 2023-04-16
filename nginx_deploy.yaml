@@ -3,25 +3,22 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: deploy-test
-  name: deploy-test
+    app: nginx
+  name: nginx
 spec:
-  replicas: 0
+  replicas: 2
   selector:
     matchLabels:
-      app: deploy-test
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 0
-      maxSurge: 2
+      app: nginx
+  strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: deploy-test
+        app: nginx
     spec:
       containers:
       - image: nginx:1.23
-        name: hello-app
+        name: nginx
         resources: {}
 status: {}
